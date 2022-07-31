@@ -44,13 +44,6 @@ class ArticlesController extends Controller
             return response(['message' => $validator->errors(), 'Validation Error'], 400);
         }
 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = $file->hashName();
-            $request->image->storeAs('public/articles', $filename);
-            $input['image'] = $filename;
-        }
-
         if ($request->hasFile('image')){
             $file = $request->file('image');
             $filename = $file->hashName();
