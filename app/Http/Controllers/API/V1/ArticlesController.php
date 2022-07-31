@@ -18,7 +18,8 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::paginate(10);
+        $articles = Article::where('user_id', Auth::user()->id)->paginate(10);
+
         return response([ 'articles' => ArticlesResource::collection($articles), 'message' => 'Retrieved successfully'], 200);
     }
 
@@ -37,7 +38,7 @@ class ArticlesController extends Controller
             'title' => 'required|max:255',
             'content' => 'required|max:255',
             'image' => 'required|mimes:jpeg,jpg,png|max:3072',
-            'category_id' => 'required|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id'
         ]);
 
         if ($validator->fails()) {
@@ -82,7 +83,7 @@ class ArticlesController extends Controller
             'title' => 'required|max:255',
             'content' => 'required|max:255',
             'image' => 'nullable|mimes:jpeg,jpg,png|max:3072',
-            'category_id' => 'required|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id'
         ]);
 
         if ($validator->fails()) {
