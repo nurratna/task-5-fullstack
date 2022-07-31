@@ -25,18 +25,32 @@
 
 <body id="page-top">
   <div id="wrapper">
-
-    @include('layouts.sidebar')
-    
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
-        <!-- TopBar -->
-        @include('layouts.header')
-        <!-- Topbar -->
+
 
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           @yield('breadcrumbs')
+
+          <nav class="navbar navbar-expand-lg bg-navbar navbar-light bg-light static-top">
+            {{-- navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top --}}
+            <a class="navbar-brand" href="#">Blog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('login') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
 
           @yield('content')
 
