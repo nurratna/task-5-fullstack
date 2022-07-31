@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\V1\AuthController;
 use App\Http\Controllers\API\V1\ArticlesController;
+use App\Http\Controllers\API\V1\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,6 @@ Route::post('v1/register', [AuthController::class, 'register']);
 Route::post('v1/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:api']], function () {
-    Route::resource('v1/articles', ArticlesController::class);
+    Route::resource('v1/post', ArticlesController::class);
+    Route::resource('v1/categories', CategoriesController::class);
 });
