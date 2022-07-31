@@ -13,6 +13,10 @@
 
 uses(Tests\TestCase::class)->in('Feature');
 
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+uses(RefreshDatabase::class)->in('Feature');
+
 /*
 |--------------------------------------------------------------------------
 | Expectations
@@ -42,4 +46,14 @@ expect()->extend('toBeOne', function () {
 function something()
 {
     // ..
+}
+
+function actingAsUser()
+{
+    $user = User::factory()->create([
+        'email' => 'admin',
+        'password' => bcrypt('password'),
+    ]);
+
+    return test()->actingAs($user);
 }
